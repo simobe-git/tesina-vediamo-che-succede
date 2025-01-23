@@ -1,0 +1,9 @@
+<?xml version="1.0"?> <!-- salva tutte le azioni degli admin in un file XML -->
+<admin_log>
+    <azione>
+        <admin>admin1</admin>
+        <tipo_azione>ban</tipo_azione>
+        <utente_target>user123</utente_target>
+        <data>2024-01-20 15:30:45</data>
+    </azione>
+</admin_log>

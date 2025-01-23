@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domande>
+    <domanda id="1">
+        <titolo>Problema con i crediti</titolo>
+        <contenuto>Come posso ricaricare i crediti? Non trovo il pulsante</contenuto>
+        <autore>mario123</autore>
+        <data>2024-03-20</data>
+        <statistiche>
+            <voti>15</voti>
+            <visite>45</visite>
+        </statistiche>
+        <risposte>
+            <risposta id="1">
+                <contenuto>Devi andare nel tuo profilo e cliccare su "Richiedi Crediti"</contenuto>
+                <autore>luigi99</autore>
+                <data>2024-03-20</data>
+                <punteggio>
+                    <utilita>8</utilita>
+                    <supporto>12</supporto>
+                </punteggio>
+            </risposta>
+            <risposta id="2">
+                <contenuto>C'è un pulsante blu in alto a destra nel tuo profilo</contenuto>
+                <autore>anna22</autore>
+                <data>2024-03-20</data>
+                <punteggio>
+                    <utilita>3</utilita>
+                    <supporto>5</supporto>
+                </punteggio>
+            </risposta>
+        </risposte>
+        <stato>attiva</stato>
+    </domanda>
+
+    <domanda id="2">
+        <titolo>Dubbio sugli sconti</titolo>
+        <contenuto>Gli sconti si possono combinare tra loro?</contenuto>
+        <autore>paolo456</autore>
+        <data>2024-03-19</data>
+        <statistiche>
+            <voti>25</voti>
+            <visite>80</visite>
+        </statistiche>
+        <risposte>
+            <risposta id="1">
+                <contenuto>No, viene applicato solo lo sconto più alto tra quelli disponibili</contenuto>
+                <autore>admin</autore>
+                <data>2024-03-19</data>
+                <punteggio>
+                    <utilita>20</utilita>
+                    <supporto>18</supporto>
+                </punteggio>
+            </risposta>
+        </risposte>
+        <stato>attiva</stato>
+    </domanda>
+</domande>
