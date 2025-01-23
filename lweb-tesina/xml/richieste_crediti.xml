@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<richiesteCrediti>
+<richiesteCrediti xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/richieste_crediti.xsd">
     <richiesta>
         <username>cliente1</username>
         <crediti>100</crediti>
@@ -18,4 +18,16 @@
         <data>2024-10-14</data>
         <status>rifiutata</status>
     </richiesta>
-<richiesta><username>cliente1</username><crediti>34</crediti><data>2025-01-21</data><status>in attesa</status></richiesta><richiesta><username>admin1</username><crediti>34</crediti><data>2025-01-21</data><status>rifiutata</status></richiesta></richiesteCrediti>
+    <richiesta>
+        <username>cliente1</username>
+        <crediti>34</crediti>
+        <data>2025-01-21</data>
+        <status>in attesa</status>
+    </richiesta>
+    <richiesta>
+        <username>admin1</username>
+        <crediti>34</crediti>
+        <data>2025-01-21</data>
+        <status>rifiutata</status>
+    </richiesta>
+</richiesteCrediti>

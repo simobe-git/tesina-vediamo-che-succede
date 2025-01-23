@@ -1,0 +1,9 @@
+<!ELEMENT catalogo (gioco+)>
+<!ELEMENT gioco (nome, prezzo, anno, sconto, bonus, descrizione, immagine)>
+<!ELEMENT nome (#PCDATA)>
+<!ELEMENT prezzo (#PCDATA)>
+<!ELEMENT anno (#PCDATA)>
+<!ELEMENT sconto (#PCDATA)>
+<!ELEMENT bonus (#PCDATA)>
+<!ELEMENT descrizione (#PCDATA)>
+<!ELEMENT immagine (#PCDATA)>
