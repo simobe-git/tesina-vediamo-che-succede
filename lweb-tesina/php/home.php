@@ -240,19 +240,24 @@ if ($result->num_rows > 0) {
                         <h3><?php echo htmlspecialchars($gioco['nome']); ?></h3>
                         <p class="descrizione"><?php echo htmlspecialchars($gioco['descrizione']); ?></p>
                         <div class="price-section" style="text-align: center;">
-                            <?php if($gioco['prezzo_attuale'] < $gioco['prezzo_originale']): ?>
+                            <?php 
+                            // Calcola il prezzo in crediti
+                            $prezzoInCrediti = $gioco['prezzo_originale'] * 2; // Prezzo originale in crediti
+                            $prezzoAttualeInCrediti = $gioco['prezzo_attuale'] * 2; // Prezzo attuale in crediti
+                            ?>
+                            <?php if($prezzoAttualeInCrediti < $prezzoInCrediti): ?>
                                 <p class="price">
                                     <span style="font-size: 1.4em; color: #2ecc71; font-weight: bold;">
-                                        Crediti: <?php echo htmlspecialchars($gioco['prezzo_attuale']); ?>
+                                        Crediti: <?php echo number_format($prezzoAttualeInCrediti, 2); ?>
                                     </span>
                                     <span style="font-size: 1.2em; color: #999; text-decoration: line-through; margin-left: 10px;">
-                                        Crediti: <?php echo htmlspecialchars($gioco['prezzo_originale']); ?>
+                                        Crediti: <?php echo number_format($prezzoInCrediti, 2); ?>
                                     </span>
                                 </p>
                             <?php else: ?>
                                 <p class="price">
                                     <span style="font-size: 1.4em; color: #2ecc71; font-weight: bold;">
-                                        €<?php echo htmlspecialchars($gioco['prezzo_originale']); ?>
+                                        Crediti: <?php echo number_format($prezzoInCrediti, 2); ?>
                                     </span>
                                 </p>
                             <?php endif; ?>
