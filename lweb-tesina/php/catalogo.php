@@ -133,9 +133,9 @@ $risultato = $connessione->query($query);
         }
 
         .gestione-catalogo .btn {
-            background-color: #4CAF50; /* colore verde per il pulsante "Aggiungi Videogioco" */
+            background-color: #4CAF50;   /* colore verde per il pulsante "Aggiungi Videogioco" */
             color: white;
-            padding: 12px 24px; /* aumentiamo il padding per ingrandire il pulsante */
+            padding: 12px 24px;   /* aumentiamo il padding per ingrandire il pulsante */
             border: none;
             border-radius: 5px;
             text-decoration: none;
@@ -154,7 +154,7 @@ $risultato = $connessione->query($query);
         }
 
         .gestione-gioco .btn {
-            background-color: #4CAF50; /* colore verde per il pulsante "Modifica" */
+            background-color: #4CAF50;  /* colore verde per il pulsante "Modifica" */
             color: white;
             padding: 10px 15px;
             border: none;
@@ -186,7 +186,9 @@ $risultato = $connessione->query($query);
             <li><a href="logout.php">Logout</a></li>
         </ul>
     </nav>
-    <?php endif; ?>
+    <?php else: 
+        include('menu.php');
+    endif; ?>
 
     <!-- per i gestori rimuoviamo i filtri  -->
     <?php if (!$isGestore): ?>

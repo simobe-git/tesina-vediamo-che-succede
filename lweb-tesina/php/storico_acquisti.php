@@ -7,12 +7,12 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-// recuperiamo lo username dall'URL ???? (oppure farlo con post?)
-$username = isset($_GET['username']) ? $_GET['username'] : $_SESSION['username'];
+$username = isset($_POST['username']) ? $_POST['username'] : $_SESSION['username'];
+// settiamo $username = $_POST['username'] se quest'ultima è settata, altrimenti si usa il valore di $_SESSION['username']
 
 // aggiungiamo la funzione formattaData
 function formattaData($data) {
-    return date('d/m/Y H:i', strtotime($data));
+    return date('Y-m-d', strtotime($data));
 }
 
 // funzione per ottenere i dettagli di un gioco
@@ -25,11 +25,7 @@ function getDettagliGioco($connessione, $codice_gioco) {
     return $result->fetch_assoc();
 }
 
-// all'inizio del file, dopo session_start()
-error_log("Inizio caricamento storico acquisti per utente: " . $_SESSION['username']);
-
 $xml_file = '../xml/acquisti.xml';
-error_log("Percorso file XML: " . realpath($xml_file));
 
 $acquisti = [];
 
@@ -68,6 +64,16 @@ if (file_exists($xml_file)) {
 }
 
 error_log("Numero totale acquisti trovati per l'utente: " . count($acquisti));
+
+// recuperiamo tutti i generi dal database per filtrare i videogiochi
+$queryGeneri = "SELECT DISTINCT genere FROM videogiochi";
+$resultGeneri = $connessione->query($queryGeneri);
+$generi = [];
+if ($resultGeneri) {
+    while ($row = $resultGeneri->fetch_assoc()) {
+        $generi[] = $row['genere'];
+    }
+}
 
 // calcolo delle statistiche
 $totale_speso = array_sum(array_column($acquisti, 'prezzo_pagato'));
@@ -199,11 +205,11 @@ $totale_bonus = array_sum(array_column($acquisti, 'bonus'));
         <div class="statistiche">
             <div class="stat-card">
                 <h3>Totale Speso</h3>
-                <div class="stat-valore">€<?php echo number_format($totale_speso, 2); ?></div>
+                <div class="stat-valore"><?php echo number_format($totale_speso * 2, 2); ?> crediti</div>
             </div>
             <div class="stat-card">
                 <h3>Totale Risparmiato</h3>
-                <div class="stat-valore">€<?php echo number_format($totale_risparmiato, 2); ?></div>
+                <div class="stat-valore"><?php echo number_format($totale_risparmiato * 2, 2); ?> crediti</div>
             </div>
             <div class="stat-card">
                 <h3>Bonus Ottenuti</h3>
@@ -220,10 +226,7 @@ $totale_bonus = array_sum(array_column($acquisti, 'bonus'));
                 <label>Filtra per genere:</label>
                 <select id="filtroGenere">
                     <option value="">Tutti</option>
-                    <?php 
-                    $generi = array_unique(array_column($acquisti, 'genere'));
-                    foreach ($generi as $genere): 
-                    ?>
+                    <?php foreach ($generi as $genere): ?>
                         <option value="<?php echo htmlspecialchars($genere); ?>">
                             <?php echo htmlspecialchars($genere); ?>
                         </option>
@@ -233,8 +236,8 @@ $totale_bonus = array_sum(array_column($acquisti, 'bonus'));
                 <label>Ordina per:</label>
                 <select id="ordinamento">
                     <option value="data">Data</option>
-                    <option value="prezzo">Prezzo</option>
-                    <option value="nome">Nome gioco</option>
+                    <option value="prezzo">Prezzo crescente</option>
+                    <option value="nome">Nome</option>
                 </select>
             </div>
 
@@ -250,15 +253,15 @@ $totale_bonus = array_sum(array_column($acquisti, 'bonus'));
                         <th>Sconto/Bonus</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="acquistiBody">
                     <?php foreach ($acquisti as $acquisto): ?>
                         <tr>
                             <td><?php echo formattaData($acquisto['data']); ?></td>
                             <td><?php echo htmlspecialchars($acquisto['gioco']); ?></td>
                             <td><?php echo htmlspecialchars($acquisto['genere']); ?></td>
                             <td><?php echo htmlspecialchars($acquisto['editore']); ?></td>
-                            <td>€<?php echo number_format($acquisto['prezzo_originale'], 2); ?></td>
-                            <td>€<?php echo number_format($acquisto['prezzo_pagato'], 2); ?></td>
+                            <td><?php echo number_format($acquisto['prezzo_originale'] * 2, 2); ?> crediti</td>
+                            <td><?php echo number_format($acquisto['prezzo_pagato'] * 2, 2); ?> crediti</td>
                             <td>
                                 <?php if ($acquisto['sconto'] > 0): ?>
                                     <span class="sconto-badge">
@@ -269,7 +272,7 @@ $totale_bonus = array_sum(array_column($acquisti, 'bonus'));
                                     <span class="bonus-badge">
                                         +<?php echo $acquisto['bonus']; ?> crediti
                                     </span>
-                                    <?php else: ?>
+                                <?php else: ?>
                                     <span class="bonus-badge">
                                         Nessun bonus
                                     </span>
@@ -295,13 +298,49 @@ $totale_bonus = array_sum(array_column($acquisti, 'bonus'));
             navLinks.classList.toggle('active');
         });
 
-        // funzioni per il filtraggio e l'ordinamento
+        // Filtraggio per genere
         document.getElementById('filtroGenere').addEventListener('change', function() {
-            //IMPLEMENTARE IL FILTRAGGIO PER GENERE
+            const genereSelezionato = this.value;
+            const righe = document.querySelectorAll('#acquistiBody tr');
+
+            righe.forEach(riga => {
+                const genereGioco = riga.cells[2].textContent;   // colonna del genere per l'ordinamento
+                if (genereSelezionato === "" || genereGioco === genereSelezionato) {
+                    riga.style.display = "";   // mostriamo la riga
+                } else {
+                    riga.style.display = "none";   // nascondimo la riga
+                }
+            });
         });
 
+        // ordinamento videogiochi
         document.getElementById('ordinamento').addEventListener('change', function() {
-            //IMPLEMENTARE L'ORDINAMENTO
+            const criterio = this.value;
+            const righe = Array.from(document.querySelectorAll('#acquistiBody tr'));
+
+            righe.sort((a, b) => {
+                let valoreA, valoreB;
+
+                switch (criterio) {
+                    case 'data':
+                        valoreA = new Date(a.cells[0].textContent);
+                        valoreB = new Date(b.cells[0].textContent);
+                        return valoreA - valoreB;   // ordinamento per data
+                    case 'prezzo':
+                        valoreA = parseFloat(a.cells[5].textContent);   // prendiamo il prezzo pagato per un videogioco
+                        valoreB = parseFloat(b.cells[5].textContent);
+                        return valoreA - valoreB;   // ordinamento per prezzo crescente
+                    case 'nome':
+                        valoreA = a.cells[1].textContent;   // prendiamo il nome del videogioco
+                        valoreB = b.cells[1].textContent;
+                        return valoreA.localeCompare(valoreB);   // ordinamento per nome (in ordine alfabetico)
+                }
+            });
+
+            // ora riaggiungiamo le righe ordinate al DOM
+            const corpoTabella = document.getElementById('acquistiBody');
+            corpoTabella.innerHTML = ""; // per pulire il corpo della tabella
+            righe.forEach(riga => corpoTabella.appendChild(riga)); // aggiungiamo le righe ordinate
         });
     </script>
 </body>

@@ -107,7 +107,7 @@ if(isset($_POST['aggiungi_al_carrello']) && isset($_POST['codice_gioco'])) {
         <h1>Tutti gli Articoli</h1>
     </header>
 
-    <!-- Filtri ricerca giochi -->
+    <!-- filtri per la ricerca dei giochi -->
     <div class="filtri-sezione">
         <div class="filtri-wrapper">
             <div class="filtro-box">
