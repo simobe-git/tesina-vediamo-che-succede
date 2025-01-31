@@ -27,7 +27,7 @@ $tabelle = [
     'giudizi_recensioni',
     'recensioni',
     'bonus',
-    'videogiochi',
+    'board_games',
     'utenti',
     'faq',
     'carrello'
@@ -64,15 +64,19 @@ if ($connessione->query($sql) === TRUE) {
     echo "Errore nella creazione della tabella utenti: " . $connessione->error . "<br>";
 }
 
-// creazione della tabella videogiochi (se non esiste già)
-$sql = "CREATE TABLE IF NOT EXISTS videogiochi (
+// creazione della tabella giochi da tavolo (se non esiste già)
+$sql = "CREATE TABLE IF NOT EXISTS board_games (
     codice INT(5) NOT NULL PRIMARY KEY,
     nome VARCHAR(50) NOT NULL,
     prezzo_originale DOUBLE(6,2) NOT NULL,
     prezzo_attuale DOUBLE(6,2) NOT NULL,
     genere VARCHAR(30) NOT NULL,
-    data_rilascio DATE NOT NULL,
-    nome_editore VARCHAR(30) NOT NULL,
+    min_giocatori INT(2) NOT NULL,/*minimo numero di giocatori*/
+    max_giocatori INT(2) NOT NULL,/*massimo numero di giocatori*/
+    eta_minima INT(2) NOT NULL,/*età minima consigliata*/
+    avg_durata INT(3) NOT NULL,/*durata media in minuti*/
+    nome_editore VARCHAR(30) NOT NULL, /*editore o produttore del gioco*/
+    autore VARCHAR(50) NOT NULL, /*autore del gioco*/
     descrizione TEXT,
     immagine VARCHAR(255)
 )";
