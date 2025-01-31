@@ -95,7 +95,7 @@ $sql = "CREATE TABLE IF NOT EXISTS recensioni (
     testo TEXT,
     data_recensione DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (username) REFERENCES utenti(username) ON DELETE CASCADE,
-    FOREIGN KEY (codice_gioco) REFERENCES videogiochi(codice) ON DELETE CASCADE
+    FOREIGN KEY (codice_gioco) REFERENCES board_games(codice) ON DELETE CASCADE
 )";
 
 if ($connessione->query($sql) === TRUE) {
@@ -128,7 +128,7 @@ $sql = "CREATE TABLE IF NOT EXISTS bonus (
     codice_gioco INT(5),
     data_inizio DATE,
     data_fine DATE,
-    FOREIGN KEY (codice_gioco) REFERENCES videogiochi(codice) ON DELETE CASCADE
+    FOREIGN KEY (codice_gioco) REFERENCES board_games(codice) ON DELETE CASCADE
 )";
 
 if ($connessione->query($sql) === TRUE) {
@@ -185,7 +185,7 @@ if ($connessione->query($sql) === TRUE) {
     echo "Errore nell'inserimento degli utenti: " . $connessione->error . "<br>";
 }
 
-// popolamento tabella videogiochi
+/* popolamento tabella videogiochi
 $sql = "INSERT IGNORE INTO videogiochi (codice, nome, prezzo_originale, prezzo_attuale, genere, data_rilascio, nome_editore, descrizione, immagine) VALUES
     (10001, 'The Witcher 3', 59.99, 39.99, 'RPG', '2015-05-19', 'CD Projekt RED', 'Un epico gioco di ruolo fantasy', 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/292030/header.jpg?t=1730212926'),
     (10002, 'FC 24', 69.99, 69.99, 'Sport', '2023-09-29', 'EA Sports', 'Il più recente simulatore di calcio', 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2195250/header.jpg?t=1730826798'),
@@ -204,6 +204,7 @@ $sql = "INSERT IGNORE INTO videogiochi (codice, nome, prezzo_originale, prezzo_a
 if ($connessione->query($sql) === TRUE) {
     echo "Dati inseriti nella tabella videogiochi<br>";
 }
+*/
 
 // popolamento tabella recensioni
 $sql = "INSERT IGNORE INTO recensioni (username, codice_gioco, testo) VALUES
