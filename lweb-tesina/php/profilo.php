@@ -587,6 +587,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['richesta_admin'])) {
             </div>
         </div>
     </div>
+    
+    <?php include('footer.php'); //visualizza il footer?>
 
     <script>
         const hamburgerMenu = document.querySelector('.hamburger-menu');
