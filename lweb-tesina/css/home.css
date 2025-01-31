@@ -290,23 +290,11 @@ body {
     text-decoration: none;
 }
 
-@media (max-width: 900px) {
-    .games-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    .games-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
 /* footer */
 .footer {
     background-color: #000;
     color: #fff;
-    padding: 20px 0;
+    padding: 15px 0;
     text-align: center;
 }
 
@@ -339,6 +327,18 @@ body {
 
 .footer a:hover {
     color: #ff4500;
+}
+
+@media (max-width: 900px) {
+    .games-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .games-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media screen and (max-width: 768px) {

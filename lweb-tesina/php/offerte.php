@@ -190,6 +190,8 @@ if(isset($_POST['aggiungi_al_carrello']) && isset($_POST['codice_gioco'])) {
         ?>
     </div>
 
+    <?php include('footer.php'); //visualizza footer?>
+    
     <script>
         const menuHamburger = document.querySelector('.hamburger-menu');
         const linkNav = document.querySelector('.nav-links');

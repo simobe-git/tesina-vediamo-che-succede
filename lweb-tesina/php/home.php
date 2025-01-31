@@ -280,28 +280,8 @@ if ($result->num_rows > 0) {
         </div>
     </section>
   
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Contattaci</h4>
-                <p>Email: info@gameshop.com</p>
-                <p>Telefono: +39 123 456 789</p>
-            </div>
-            <div class="footer-section">
-                <h4>Seguici</h4>
-                <p>
-                    <a href="#">Facebook</a> | 
-                    <a href="#">Twitter</a> | 
-                    <a href="#">Instagram</a>
-                </p>
-            </div>
-            <div class="footer-section">
-                <h4>Copyright</h4>
-                <p>&copy; 2024 GameShop. Tutti i diritti sono riservati.</p>
-            </div>
-        </div>
-    </footer>
-  
+    <?php include('footer.php'); //visualizza il footer?>
+
     <script>
         const hamburgerMenu = document.querySelector('.hamburger-menu');
         const navLinks = document.querySelector('.nav-links');
