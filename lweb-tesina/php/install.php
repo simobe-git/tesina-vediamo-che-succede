@@ -75,7 +75,7 @@ $sql = "CREATE TABLE IF NOT EXISTS board_games (
     max_giocatori INT(2) NOT NULL,/*massimo numero di giocatori*/
     eta_minima INT(2) NOT NULL,/*età minima consigliata*/
     avg_durata INT(3) NOT NULL,/*durata media in minuti*/
-    nome_editore VARCHAR(30) NOT NULL, /*editore o produttore del gioco*/
+    nome_editore VARCHAR(50) NOT NULL, /*editore o produttore del gioco*/
     autore VARCHAR(50) NOT NULL, /*autore del gioco*/
     descrizione TEXT,
     immagine VARCHAR(255)
@@ -185,26 +185,17 @@ if ($connessione->query($sql) === TRUE) {
     echo "Errore nell'inserimento degli utenti: " . $connessione->error . "<br>";
 }
 
-/* popolamento tabella videogiochi
-$sql = "INSERT IGNORE INTO videogiochi (codice, nome, prezzo_originale, prezzo_attuale, genere, data_rilascio, nome_editore, descrizione, immagine) VALUES
-    (10001, 'The Witcher 3', 59.99, 39.99, 'RPG', '2015-05-19', 'CD Projekt RED', 'Un epico gioco di ruolo fantasy', 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/292030/header.jpg?t=1730212926'),
-    (10002, 'FC 24', 69.99, 69.99, 'Sport', '2023-09-29', 'EA Sports', 'Il più recente simulatore di calcio', 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2195250/header.jpg?t=1730826798'),
-    (10003, 'Cyberpunk 2077', 59.99, 49.99, 'RPG', '2020-12-10', 'CD Projekt RED', 'Un gioco di ruolo ambientato nel futuro', 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1091500/header.jpg?t=1730212296'),
-    (10004, 'Assassins Creed Valhalla', 59.99, 44.99, 'Azione/Avventura', '2020-11-10', 'Ubisoft', 'Avventura vichinga', 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2208920/header.jpg?t=1732122317'),
-    (10005, 'Red Dead Redemption 2', 59.99, 39.99, 'Azione/Avventura', '2018-10-26', 'Rockstar Games', 'Epica avventura western', 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1174180/header.jpg?t=1720558643'),
-    (10006, 'God of War Ragnarök', 69.99, 59.99, 'Azione/Avventura', '2022-11-09', 'Sony', 'Epica avventura norrena', 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2322010/header.jpg?t=1728067832'),
-    (10007, 'Spider-Man 2', 69.99, 69.99, 'Azione/Avventura', '2023-10-20', 'Sony', 'Le avventure dell\'Uomo Ragno', 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2651280/header.jpg?t=1732310461'),
-    (10008, 'Final Fantasy XVI', 69.99, 49.99, 'RPG', '2023-06-22', 'Square Enix', 'Action RPG fantasy', 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2515020/header.jpg?t=1732559903'),
-    (10009, 'Resident Evil 4', 59.99, 39.99, 'Horror', '2023-03-24', 'Capcom', 'Remake del classico horror', 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2050650/header.jpg?t=1731387968'),
-    (10010, 'Horizon Forbidden West', 59.99, 29.99, 'Azione/RPG', '2022-02-18', 'Sony', 'Avventura post-apocalittica', 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2420110/header.jpg?t=1725653368'),
-    (10011, 'Elden Ring', 59.99, 44.99, 'RPG', '2022-02-25', 'FromSoftware', 'Action RPG open world', 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg?t=1726158298'),
-    (10012, 'Diablo IV', 69.99, 59.99, 'RPG', '2023-06-06', 'Blizzard', 'Action RPG dark fantasy', 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2344520/header.jpg?t=1728494275'),
-    (10013, 'F1 24', 59.99, 29.99, 'Sport', '2024-05-31', 'Codemasters', 'Simulatore di Formula 1', 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2488620/header.jpg?t=1732562663')";
+// popolamento tabella videogiochi
+$sql = "INSERT IGNORE INTO board_games (codice, nome, prezzo_originale, prezzo_attuale, genere, min_giocatori, max_giocatori, eta_minima, avg_durata, nome_editore, autore, descrizione, immagine) VALUES
+    (1,'Monopoly', 30.00, 20.00, 'sociale', 2, 6, 8, 200, 'Hasbro', 'Elizabeth Magie', 'bello', 'https://logowik.com/content/uploads/images/monopoly512.logowik.com.webp'),
+    (2,'Indovina Chi?', 30.00, 20.00, '	deduzione', 2, 2, 6, 20, 'Hasbro/Milton Bradley', 'Theo e Ora Coster', 'bello', 'https://hasbrocommunity.it/images/logos/300x300/indovina_chi.jpg?v=1'),
+    (3,'Jenga', 35.00, 25.00, 'costruzioni', 2, 4, 4, 15, 'Hasbro', 'Leslie Scott', 'Non farla cadere!', 'https://logowik.com/content/uploads/images/jenga5734.logowik.com.webp')
+    ";
 
 if ($connessione->query($sql) === TRUE) {
     echo "Dati inseriti nella tabella videogiochi<br>";
 }
-*/
+
 
 // popolamento tabella recensioni
 $sql = "INSERT IGNORE INTO recensioni (username, codice_gioco, testo) VALUES
