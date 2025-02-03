@@ -15,7 +15,7 @@ if (isset($_SESSION['username'])) {
 }
 
 // query per selezionare 3 giochi casuali tra quelli presenti da mostrare a schermo
-$sql = "SELECT * FROM videogiochi ORDER BY RAND() LIMIT 3";
+$sql = "SELECT * FROM board_games ORDER BY RAND() LIMIT 3";
 $result = $connessione->query($sql);
 
 $giochi = [];
@@ -36,44 +36,7 @@ if ($result->num_rows > 0) {
     <link rel="stylesheet" href="../css/menu.css">
 
     <style>
-        .crediti-virtuali {
-            position: absolute;
-            top: 80px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 15px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-        }
-
-        .icona-crediti {
-            width: 32px;
-            height: 32px;
-            object-fit: contain;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-        }
-
-        .crediti-info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .crediti-label {
-            color: #adb5bd;
-            font-size: 0.9em;
-            margin-bottom: 2px;
-        }
-
-        .crediti-amount {
-            color: #ffd700;
-            font-size: 1.2em;
-            font-weight: bold;
-        }
+        /*Eliminazione stile dei crediti*/
 
         .attribution {
             text-align: center;
@@ -205,16 +168,9 @@ if ($result->num_rows > 0) {
     <?php include('menu.php'); ?>
 
     <section class="hero-section">
-        <?php if(isset($_SESSION['username'])): ?>
-            <div class="crediti-virtuali">
-                <img src="../isset/coin.png" alt="Crediti">
-                <div class="crediti-info">
-                    <span class="crediti-label">I tuoi Crediti:</span>
-                    <span class="crediti-amount"><?php echo number_format($numCrediti, 2); ?></span>
-                </div>
-            </div>
-        <?php endif; ?>
-        
+
+        <!-- Eliminazione visualizzazione crediti -->
+
         <div class="hero-content">
             <?php if(!isset($_SESSION['username'])){ ?>
                 <h1>Benvenuti su GameShop</h1>
@@ -280,28 +236,8 @@ if ($result->num_rows > 0) {
         </div>
     </section>
   
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Contattaci</h4>
-                <p>Email: info@gameshop.com</p>
-                <p>Telefono: +39 123 456 789</p>
-            </div>
-            <div class="footer-section">
-                <h4>Seguici</h4>
-                <p>
-                    <a href="#">Facebook</a> | 
-                    <a href="#">Twitter</a> | 
-                    <a href="#">Instagram</a>
-                </p>
-            </div>
-            <div class="footer-section">
-                <h4>Copyright</h4>
-                <p>&copy; 2024 GameShop. Tutti i diritti sono riservati.</p>
-            </div>
-        </div>
-    </footer>
-  
+    <?php include('footer.php'); //visualizza il footer?>
+
     <script>
         const hamburgerMenu = document.querySelector('.hamburger-menu');
         const navLinks = document.querySelector('.nav-links');

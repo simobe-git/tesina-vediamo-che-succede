@@ -309,6 +309,8 @@ $risultato = $connessione->query($query);
         ?>
     </div>
 
+    <?php include('footer.php'); ?>
+    
     <script>
         const menuHamburger = document.querySelector('.hamburger-menu');
         const linkNav = document.querySelector('.nav-links');
