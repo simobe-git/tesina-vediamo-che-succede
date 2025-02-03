@@ -4,6 +4,7 @@ require_once('dati-connessione.php');
 $connessione = new mysqli($hostname, $user, $password);
 
 // verifica della connessione
+//provaa
 if ($connessione->connect_error) {
     die("Connessione fallita: " . $connessione->connect_error);
 }
