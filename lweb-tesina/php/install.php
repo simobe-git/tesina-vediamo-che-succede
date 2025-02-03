@@ -190,6 +190,15 @@ $sql = "INSERT IGNORE INTO board_games (codice, nome, prezzo_originale, prezzo_a
     (1,'Monopoly', 30.00, 20.00, 'sociale', 2, 6, 8, 200, 'Hasbro', 'Elizabeth Magie', 'bello', 'https://logowik.com/content/uploads/images/monopoly512.logowik.com.webp'),
     (2,'Indovina Chi?', 30.00, 20.00, '	deduzione', 2, 2, 6, 20, 'Hasbro/Milton Bradley', 'Theo e Ora Coster', 'bello', 'https://hasbrocommunity.it/images/logos/300x300/indovina_chi.jpg?v=1'),
     (3,'Jenga', 35.00, 25.00, 'costruzioni', 2, 4, 4, 15, 'Hasbro', 'Leslie Scott', 'Non farla cadere!', 'https://logowik.com/content/uploads/images/jenga5734.logowik.com.webp')
+    (4, 'Catan', 45.00, 35.00, 'gestionale', 3, 4, 10, 90, 'Kosmos', 'Klaus Teuber', 'Colleziona risorse e costruisci il tuo impero!', 'https://logowik.com/content/uploads/images/catan.jpg'),  
+    (5, 'Carcassonne', 40.00, 30.00, 'piazzamento tessere', 2, 5, 7, 35, 'Hans im Glück', 'Klaus-Jürgen Wrede', 'Costruisci città e conquista territori.', 'https://logowik.com/content/uploads/images/carcassonne.jpg'),  
+    (6, 'Dixit', 35.00, 28.00, 'narrazione', 3, 6, 8, 30, 'Libellud', 'Jean-Louis Roubira', 'Un gioco di immaginazione e creatività.', 'https://logowik.com/content/uploads/images/dixit.jpg'),  
+    (7, 'Risiko!', 50.00, 40.00, 'strategia', 2, 6, 10, 120, 'Hasbro', 'Albert Lamorisse', 'Conquista il mondo con la tua strategia!', 'https://logowik.com/content/uploads/images/risiko.jpg'),  
+    (8, 'Cluedo', 30.00, 22.00, 'investigazione', 3, 6, 8, 45, 'Hasbro', 'Anthony Pratt', 'Scopri chi è l\'assassino e con quale arma.', 'https://logowik.com/content/uploads/images/cluedo.jpg'),  
+    (9, 'Scotland Yard', 35.00, 27.00, 'investigazione', 2, 6, 10, 45, 'Ravensburger', 'Werner Schlegel', 'Cattura il misterioso Mister X per vincere.', 'https://logowik.com/content/uploads/images/scotlandyard.jpg'),  
+    (10, 'Azul', 40.00, 32.00, 'astratto', 2, 4, 8, 30, 'Plan B Games', 'Michael Kiesling', 'Crea il miglior mosaico con le tessere.', 'https://logowik.com/content/uploads/images/azul.jpg'),  
+    (11, '7 Wonders', 50.00, 42.00, 'gestione risorse', 3, 7, 10, 45, 'Repos Production', 'Antoine Bauza', 'Costruisci la tua civiltà attraverso le ere.', 'https://logowik.com/content/uploads/images/7wonders.jpg'),  
+    (12, 'Twilight Struggle', 60.00, 55.00, 'guerra fredda', 2, 2, 13, 180, 'GMT Games', 'Ananda Gupta e Jason Matthews', 'Vivi la tensione della guerra fredda.', 'https://logowik.com/content/uploads/images/twilightstruggle.jpg');  
     ";
 
 if ($connessione->query($sql) === TRUE) {
